@@ -5,17 +5,17 @@
 Vagrant.configure("2") do |config|
   config.vagrant.plugins = ["vagrant-vbguest"]
   config.vm.box = "centos/stream8"
-  config.vm.vbox_check_update = true
+  config.vm.box_check_update = true
   config.vbguest.installer_options = { allow_kernel_upgrade: true }
   config.vm.define "ansible" do |ansible|
     ansible.vm.synced_folder ".", "/vagrant", automount: true, type: "virtualbox"
     ansible.vm.hostname = "ansible"
-    ansible.vm.network "private_network", ip: "10.0.0.1"
+    ansible.vm.network "private_network", ip: "10.0.0.2"
     ansible.vm.provider "virtualbox" do |vb|
       vb.name = "ansible"
       vb.gui = false
-      vb.cpu = 2
-      vb.memory "2048"
+      vb.cpus = 2
+      vb.memory = "1024"
     end
     ansible.vm.provision "shell", inline: <<-SHELL
     yum install -y --nogpgcheck epel-release

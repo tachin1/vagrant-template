@@ -1,0 +1,3 @@
+# Vagrant project template
+
+WIP
